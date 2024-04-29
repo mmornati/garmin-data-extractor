@@ -4,6 +4,7 @@ import pandas as pd
 from datetime import datetime,timedelta
 import logging
 import os
+import json
 from getpass import getpass
 import requests
 from garth.exc import GarthHTTPError
@@ -255,6 +256,11 @@ def fetch_hrv(end, period):
     try:
         # Fetch the daily HRV data
         hrv = pd.DataFrame(garth.DailyHRV.list(end=end, period=period))
+        ser = hrv['baseline'].apply(lambda s: pd.json_normalize(s))
+        a = hrv.drop(columns=['baseline'])
+        b = pd.concat(list(ser), ignore_index=True)
+        hrv = a.join(b)
+
         # Set the 'calendar_date' column as the index
         hrv.set_index("calendar_date", inplace=True)
 
@@ -334,4 +340,5 @@ def main():
 if __name__ == "__main__":
     main()
     
+
 
