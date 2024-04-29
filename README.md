@@ -33,3 +33,20 @@ This Python script allows you to extract health and activity data from Garmin Co
 2. The health and activity data will be saved to the following CSV files:
    - `consolidated_garmin_health_stats.csv`
    - `garmin_activities.csv`
+
+## Data Explain
+
+Based on the Garmin devices you are using, the CSV file can contains a more complex dataset.
+An exemple using a quite recent Garmin Watch (Fenix 7), the health dataset is having a lot of information:
+
+```csv
+calendar_date,total_steps,total_distance,step_goal,sleep_quality,intensity_minutes_goal,moderate_intensity_minutes,vigorous_intensity_minutes,intensity_minutes,weekly_avg,last_night_avg,last_night_5_min_high
+2024-01-19,7256,5929,11600,89.0,150.0,0.0,0.0,0.0,59.0,69.0,107.0,"{'low_upper': 53, 'balanced_low': 58, 'balanced_upper': 77, 'marker_value': 0.27630615}",BALANCED,HRV_BALANCED_4,2024-01-19 06:21:44.673
+```
+
+The same extraction, got from my timelines years ago, is having a very few data:
+
+```csv
+calendar_date,total_steps,total_distance,step_goal,sleep_quality,intensity_minutes_goal,moderate_intensity_minutes,vigorous_intensity_minutes,intensity_minutes,weekly_avg,last_night_avg,last_night_5_min_high
+2016-07-01,5423,4392,9205,,,,,,,,
+```
